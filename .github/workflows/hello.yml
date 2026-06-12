@@ -1,4 +1,4 @@
-name: Hello Workflow
+name: Node Demo
 
 on:
   push:
@@ -6,12 +6,25 @@ on:
       - dev
 
 jobs:
-  hello:
+  demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Print message
-        run: echo "Hello Hetul! GitHub Actions is working 🚀"
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check Node Version
+        run: node -v
+
+      - name: Check NPM Version
+        run: npm -v
+
+      - name: Print Current Directory
+        run: pwd
+
+      - name: List Files
+        run: ls -la
